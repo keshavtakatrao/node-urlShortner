@@ -13,6 +13,18 @@ const URL = process.env.DB;
 app.use(cors());
 app.use(express.json());
 
+app.get('/user',async function(req,res){
+    try{
+        let connection = await mongodb.connect(URL);
+        let db = connection.db(DB);
+        let data = db.collection('users').find().toArray();
+        res.json(data);
+        connection.close
+    }
+    catch(error){
+        console.log(error)
+    }
+})
 app.post('/register', async function(req,res){
     try {
         let connection = await mongodb.connect(URL);
@@ -24,6 +36,8 @@ app.post('/register', async function(req,res){
         res.json({
             message : 'user registered'
         })
+        connection.close
+
     } catch (error) {
         console.log(error);
     }
@@ -53,6 +67,8 @@ app.post('/login',async function(req,res){
                 message : "Email or password incorrect"
             })
         }
+        connection.close
+
     }
     catch(error){
         console.log(error);
