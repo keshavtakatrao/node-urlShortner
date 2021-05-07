@@ -7,7 +7,7 @@ const DB = 'urlShortner';
 const bcrypt = require('bcryptjs');
 const shortid = require('shortid');
 require('dotenv').config();
-const URL = process.env.DB;
+const URL = 'mongodb+srv://keshavtakatrao:keshavqwerty9955@cluster0.qbuzo.mongodb.net?retryWrites=true&w=majority';
 
 
 app.use(cors());
