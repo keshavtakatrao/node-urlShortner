@@ -17,7 +17,7 @@ app.get('/user',async function(req,res){
     try{
         let connection = await mongodb.connect(URL);
         let db = connection.db(DB);
-        let data = db.collection('users').find().toArray();
+        let data = await db.collection('users').find().toArray();
         res.json(data);
         connection.close
     }
